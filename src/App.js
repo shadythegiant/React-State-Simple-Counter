@@ -7,20 +7,6 @@ export function App() {
   const [counter, setCounter] = useState(0);
   today.setDate(today.getDay() + counter);
 
-  //   function to update step
-
-  function updateStep(e) {
-    if (e.target.innerHTML === "+") {
-      setStep(step + 1);
-    } else {
-      if (step === 1) {
-        return;
-      } else {
-        setStep(step - 1);
-      }
-    }
-  }
-
   //   function to update counter
 
   function updateCounter(e) {
@@ -35,19 +21,30 @@ export function App() {
   return (
     <div className="container">
       <div className="box">
-        <button className="btn increase" onClick={updateStep}>
+        <input
+          type="range"
+          min={0}
+          max={10}
+          value={step}
+          onChange={(e) => setStep(+e.target.value)}
+        />
+        {/* <button className="btn increase" onClick={updateStep}>
           +
-        </button>
+        </button> */}
         <p>{`Step : ${step}`}</p>
-        <button className="btn" onClick={updateStep}>
+        {/* <button className="btn" onClick={updateStep}>
           -
-        </button>
+        </button> */}
       </div>
       <div className="box">
         <button className="btn" onClick={updateCounter}>
           +
         </button>{" "}
-        <p>{`Count : ${counter}`}</p>
+        <input
+          type="text"
+          value={counter}
+          onChange={(e) => setCounter(step + Number(e.target.value))}
+        />
         <button className="btn" onClick={updateCounter}>
           -
         </button>
